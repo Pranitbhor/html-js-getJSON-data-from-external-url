@@ -1,0 +1,71 @@
+<!--pranit bhor-->
+<!--Register form-->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"> </script>
+<script>
+$(document).ready(function () {
+
+$.getJSON('http://localhost:8080/examples/people.json', function(jsonData) {
+        
+  
+console.log(jsonData);
+
+var s1=jsonData.data.student;
+
+for (var i = 0; i < s1.length; i++) {
+   var counter = s1[i];
+   if(jsonData.status!="error")
+        {
+            tr = $('<tr/>');
+            tr.append("<td>" + counter.id + "</td>");
+           tr.append("<td>" + counter.subject + "</td>");
+            tr.append("<td>" + counter.fullName+ "</td>");
+            tr.append("<td>" + counter.email + "</td>");
+            tr.append("<td>" + counter.mark + "</td>");
+            $('table').append(tr);
+
+        }
+  else
+      {
+        alert(jsonData.message);
+      }
+  }
+      
+ });
+    });
+
+
+
+
+</script>
+</head>
+
+<body>
+<div class="jumbotron text-center">
+<h1>All Student Data</h1>
+  
+
+</div>
+
+<table class="table table-bordered table-striped">
+    <tr>
+    <th>Id</th>
+        <th>Subject</th>
+        <th>Full Name</th>
+        <th>Email</th>
+         <th>Mark</th>
+    </tr>
+</table>
+<a href="index.html" class="btn btn-success ">Back</a>
+</body>
+
+</html>
